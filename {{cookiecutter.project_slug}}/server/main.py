@@ -1,13 +1,12 @@
 from fastapi import FastAPI
 from views import views
-
 # i/o
 import databases
 import aioredis
 
 redis = None
 
-# database = databases.Database("postgresql://{")
+# database = databases.Database("postgresql://{user}:{password}@{host}:5432/{dbname}")
 
 app = FastAPI()
 
