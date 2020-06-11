@@ -1,0 +1,10 @@
+{
+    "full_name": "Jason Baker",
+    "email": "jason.th.baker@gmail.com",
+    "github_username": "jtbaker",
+    "project_name": "Full Stack Boilerplate",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_')}}",
+    "project_short_description": "Full Stack boilerplate for a FastAPI web project with NGINX and Redis.",
+    "version": "0.1.0",
+    "open_source_license": ["MIT license"]
+}
