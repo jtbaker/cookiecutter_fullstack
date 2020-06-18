@@ -3,7 +3,7 @@ version: "2.2"
 services:
     proxy:
         image: nginx:alpine
-        container_name: proxy
+        container_name: "{{cookiecutter.project_slug}}-proxy"
         ports:
             - "80:80"
         volumes:
@@ -11,15 +11,15 @@ services:
 
     server:
         build: ./server
-        container_name: server
-        hostname: server
+        container_name: "{{cookiecutter.project_slug}}-server"
+        hostname: "{{cookiecutter.project_slug}}-server"
         volumes:
             - ./server:/app
 
     redis:
         image: redis
-        hostname: redis
-        container_name: redis
+        hostname: "{{cookiecutter.project_slug}}-redis"
+        container_name: "{{cookiecutter.project_slug}}-redis"
         ports:
             - "6379:6379"
         
