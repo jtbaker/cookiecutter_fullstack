@@ -5,7 +5,7 @@ from sqlalchemy import create_engine, Column
 from sqlalchemy.orm.session import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from dotenv import load_dotenv
-
+from datetime import datetime
 
 load_dotenv()
 
@@ -25,12 +25,12 @@ Base = declarative_base()
 
 class User(Base):
     __tablename__ = "users"
-    id = Column('id', sqlalchemy.Integer, primary_key=True)
-    name = Column('name', sqlalchemy.Text)
-    password = Column('password', sqlalchemy.Text)
-    email = Column('email', sqlalchemy.Text)
-    created = Column('created', sqlalchemy.TIMESTAMP)
-    last_login = Column('last_login', sqlalchemy.TIMESTAMP)
+    id: int = Column('id', sqlalchemy.Integer, primary_key=True)
+    name: str = Column('name', sqlalchemy.Text)
+    password: str = Column('password', sqlalchemy.Text)
+    email: str = Column('email', sqlalchemy.Text)
+    created: datetime = Column('created', sqlalchemy.TIMESTAMP)
+    last_login: datetime = Column('last_login', sqlalchemy.TIMESTAMP)
 
     def create(name: str, email: str, password: str):
         return None
@@ -41,3 +41,4 @@ async def get_user(username: str) -> User:
     res = session.query(User).filter(User.username == username).first()
     session.close()
     return res
+

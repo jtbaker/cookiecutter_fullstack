@@ -6,6 +6,7 @@ databases[postgresql]
 python-dotenv
 passlib
 <<<<<<< HEAD
+<<<<<<< HEAD
 sqlalchemy
 argon2-cffi
 jwt
@@ -21,3 +22,9 @@ gunicorn
 =======
 sqlalchemy
 >>>>>>> f54c247... Start work on generalized database abstractions.
+=======
+sqlalchemy
+argon2-cffi
+jwt
+python-multipart
+>>>>>>> 7c18cfe... Work on fleshing out project structure.
