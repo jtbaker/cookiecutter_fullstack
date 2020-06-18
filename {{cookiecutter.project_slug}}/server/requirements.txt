@@ -3,3 +3,6 @@ databases[postgresql]
 python-dotenv
 passlib
 sqlalchemy
+argon2-cffi
+jwt
+python-multipart
