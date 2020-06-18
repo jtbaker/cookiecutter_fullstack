@@ -1,3 +1,5 @@
 aioredis
 databases[postgresql]
 python-dotenv
+passlib
+sqlalchemy
