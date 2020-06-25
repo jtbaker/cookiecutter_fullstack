@@ -34,7 +34,7 @@ async def login(name: str, password: str):
 async def index(name: str = None):
     if name is None:
         name = await redis.get("name", encoding="utf-8")
-        redis.
+        # redis.
     else:
         redis.set("name", name)
     return f"Hello, {name}\n\n"
