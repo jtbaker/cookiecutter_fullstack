@@ -3,7 +3,7 @@ version: "2.2"
 services:
     proxy:
         image: nginx:alpine
-        container_name: "{{cookiecutter.project_slug}}-proxy"
+        container_name: "cookiecutter-proxy"
         ports:
             - "80:80"
         volumes:
@@ -11,15 +11,23 @@ services:
 
     server:
         build: ./server
-        container_name: "{{cookiecutter.project_slug}}-server"
-        hostname: "{{cookiecutter.project_slug}}-server"
+        container_name: "cookiecutter-server"
+        hostname: "cookiecutter-server"
         volumes:
             - ./server:/app
 
     redis:
         image: redis
-        hostname: "{{cookiecutter.project_slug}}-redis"
-        container_name: "{{cookiecutter.project_slug}}-redis"
+        hostname: "cookiecutter-redis"
+        container_name: "cookiecutter-redis"
         ports:
             - "6379:6379"
+    
+    prediction:
+        # image: continuumio/miniconda3
+        build: ./prediction_engine
+        hostname: "cookiecutter-prediction"
+        container_name: "cookiecutter-prediction"
+        volumes:
+            - ./prediction_engine:/home
         

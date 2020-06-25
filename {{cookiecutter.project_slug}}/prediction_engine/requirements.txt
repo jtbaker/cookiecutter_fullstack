@@ -1,0 +1,8 @@
+aioredis
+python-dotenv
+sqlalchemy
+scikit-learn
+pandas
+keras
+xgboost
+pyarrow
