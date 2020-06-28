@@ -57,10 +57,15 @@ services:
     
     prediction:
         # image: continuumio/miniconda3
-        build: ./prediction_engine
+        build: ./server/tasks
         hostname: "cookiecutter-prediction"
         container_name: "cookiecutter-prediction"
         volumes:
+<<<<<<< HEAD
             - ./prediction_engine:/home
         
 >>>>>>> 42696a7... Prediction task queue.
+=======
+            - ./server/tasks:/home
+        
+>>>>>>> 6c835bc... Add celery worker functionality.

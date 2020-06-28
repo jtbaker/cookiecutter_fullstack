@@ -12,6 +12,7 @@ argon2-cffi
 jwt
 python-multipart
 celery[redis]
+<<<<<<< HEAD
 joblib
 pandas
 pytest
@@ -28,3 +29,6 @@ argon2-cffi
 jwt
 python-multipart
 >>>>>>> 7c18cfe... Work on fleshing out project structure.
+=======
+joblib
+>>>>>>> 6c835bc... Add celery worker functionality.
