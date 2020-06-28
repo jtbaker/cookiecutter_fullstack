@@ -6,4 +6,5 @@ COPY ./requirements.txt /home/requirements.txt
 
 RUN ["pip", "install", "-r", "requirements.txt"]
 
-CMD ["python", "placeholder.py"]
+# CMD ["python", "tasks.py"]
+CMD ["celery", "-A", "tasks", "worker", "-l", "info"]

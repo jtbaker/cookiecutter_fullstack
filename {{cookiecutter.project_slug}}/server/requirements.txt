@@ -6,3 +6,5 @@ sqlalchemy
 argon2-cffi
 jwt
 python-multipart
+celery[redis]
+joblib

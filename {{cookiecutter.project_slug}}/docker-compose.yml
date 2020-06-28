@@ -25,9 +25,9 @@ services:
     
     prediction:
         # image: continuumio/miniconda3
-        build: ./prediction_engine
+        build: ./server/tasks
         hostname: "cookiecutter-prediction"
         container_name: "cookiecutter-prediction"
         volumes:
-            - ./prediction_engine:/home
+            - ./server/tasks:/home
         

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from views import views
-from routes import token, actions
+from routes import token, actions, models
+# from prediction_engine import add
 from security.authentication import authenticate_user
 from serialization.serializers import User
 
@@ -8,7 +9,7 @@ from serialization.serializers import User
 import databases
 import aioredis
 
-redis = None
+# redis = None
 
 # database = databases.Database("postgresql://{user}:{password}@{host}:5432/{dbname}")
 
@@ -17,11 +18,11 @@ app = FastAPI()
 # app.include_router(views.router, prefix="/")
 app.include_router(token.router)
 app.include_router(actions.router)
-
-@app.on_event("startup")
-async def startup():
-    global redis
-    redis = await aioredis.create_redis_pool("redis://redis")
+app.include_router(models.router)
+# @app.on_event("startup")
+# async def startup():
+    # global redis
+    # redis = await aioredis.create_redis_pool("redis://redis")
     # await database.connect()
 
 

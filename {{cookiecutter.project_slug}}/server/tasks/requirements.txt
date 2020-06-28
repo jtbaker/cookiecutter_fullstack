@@ -6,3 +6,5 @@ pandas
 keras
 xgboost
 pyarrow
+celery[redis]
+joblib
