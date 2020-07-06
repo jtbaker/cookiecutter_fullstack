@@ -8,6 +8,7 @@ import pandas as pd
 # from main import app
 
 # from ..main import app
+<<<<<<< HEAD
 from main import app, get_cache, get_db
 from db.models import User, Base
 from sqlalchemy import create_engine
@@ -34,6 +35,12 @@ def override_get_db():
 
 app.dependency_overrides[get_db] = override_get_db
 
+=======
+from main import app, get_cache
+from db.models import User, Base
+
+
+>>>>>>> 1513f58... Add testing.
 # class Cache:
 #     def get(self, key: str) -> Any:
 #         return getattr(self, key)

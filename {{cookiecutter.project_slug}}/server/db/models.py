@@ -6,6 +6,8 @@ from sqlalchemy.orm.session import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from dotenv import load_dotenv
 from datetime import datetime
+# from passlib
+
 
 load_dotenv()
 
@@ -32,8 +34,12 @@ class User(Base):
     created: datetime = Column('created', sqlalchemy.TIMESTAMP)
     last_login: datetime = Column('last_login', sqlalchemy.TIMESTAMP)
 
-    def create(name: str, email: str, password: str):
-        return None
+    def create(self, name: str, email: str, password: str):
+        return self.__init__(name=name, email=email, password=password)
+
+    # def hash_password():
+
+    # def verify_password():
 
 
 async def get_user(username: str) -> User:

@@ -13,6 +13,7 @@ jwt
 python-multipart
 celery[redis]
 <<<<<<< HEAD
+<<<<<<< HEAD
 joblib
 pandas
 pytest
@@ -32,3 +33,8 @@ python-multipart
 =======
 joblib
 >>>>>>> 6c835bc... Add celery worker functionality.
+=======
+joblib
+pandas
+pytest
+>>>>>>> 1513f58... Add testing.
