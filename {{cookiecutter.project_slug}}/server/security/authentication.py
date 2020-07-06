@@ -2,7 +2,8 @@
 from passlib.context import CryptContext
 import jwt
 import os
-from db.models import User, get_user
+from ..db.models import User, get_user
+from typing import Union
 
 # from .models import User, get_user
 from datetime import datetime, timedelta
@@ -13,9 +14,9 @@ pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 load_dotenv()
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY: str = os.getenv("SECRET_KEY", "none")
 ACCESS_TOKEN_EXPIRE_MINUTES = (
-    int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
+    int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "0"))
     if os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES") is not None
     else None
 )
@@ -23,7 +24,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = (
 
 async def authenticate_user(
     username: str, password: str, context: CryptContext = pwd_context
-) -> User:
+) -> Union[User, None]:
     user = await get_user(username)
     if not user:
         return None
