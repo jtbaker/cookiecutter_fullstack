@@ -2,7 +2,7 @@ import databases
 import sqlalchemy
 from os import getenv
 from sqlalchemy import create_engine, Column
-from sqlalchemy.orm.session import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
 from dotenv import load_dotenv
 from datetime import datetime
@@ -18,14 +18,14 @@ dbname = getenv('dbname')
 
 conn_str = f"""postgresql://{user}:{password}@{host}:5432/{dbname}"""
 
-engine = create_engine(conn_str)
+engine = create_engine("postgresql://postgres:postgres@pg:5432/postgres")
 
-Session = sessionmaker(bind=engine)
+Session = scoped_session(sessionmaker(bind=engine))
 
 Base = declarative_base()
 
 
-class User(Base):
+class User(Base): # type: ignore
     __tablename__ = "users"
     id: int = Column('id', sqlalchemy.Integer, primary_key=True)
     name: str = Column('name', sqlalchemy.Text)

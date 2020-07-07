@@ -10,7 +10,15 @@ import pandas as pd
 # from ..main import app
 from main import app, get_cache
 from db.models import User, Base
+from sqlalchemy import create_engine
+from sqlalchemy.orm.session import sessionmaker
 
+
+engine = create_engine("postgresql://postgres:postgres@pg:5432/postgres")
+
+Session = sessionmaker(bind=engine)
+
+Base.metadata.create_all(bind=engine)
 
 # class Cache:
 #     def get(self, key: str) -> Any:

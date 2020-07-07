@@ -15,6 +15,15 @@ services:
         hostname: "cookiecutter-server"
         volumes:
             - ./server:/app
+    
+    pg:
+        image: postgis/postgis
+        container_name: pg
+        hostname: "pg"
+        environment: 
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=postgres
+
 
     redis:
         image: redis

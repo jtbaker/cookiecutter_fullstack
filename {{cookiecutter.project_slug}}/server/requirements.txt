@@ -13,3 +13,4 @@ celery[redis]
 joblib
 pandas
 pytest
+psycopg2
