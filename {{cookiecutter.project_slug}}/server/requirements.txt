@@ -17,6 +17,7 @@ celery[redis]
 joblib
 pandas
 pytest
+<<<<<<< HEAD
 psycopg2
 arq
 pyarrow
@@ -38,3 +39,6 @@ joblib
 pandas
 pytest
 >>>>>>> 1513f58... Add testing.
+=======
+psycopg2
+>>>>>>> b93f45b... Crud work.

@@ -38,9 +38,20 @@ app.dependency_overrides[get_db] = override_get_db
 =======
 from main import app, get_cache
 from db.models import User, Base
+from sqlalchemy import create_engine
+from sqlalchemy.orm.session import sessionmaker
 
 
+<<<<<<< HEAD
 >>>>>>> 1513f58... Add testing.
+=======
+engine = create_engine("postgresql://postgres:postgres@pg:5432/postgres")
+
+Session = sessionmaker(bind=engine)
+
+Base.metadata.create_all(bind=engine)
+
+>>>>>>> b93f45b... Crud work.
 # class Cache:
 #     def get(self, key: str) -> Any:
 #         return getattr(self, key)

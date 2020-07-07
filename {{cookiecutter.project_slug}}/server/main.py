@@ -18,7 +18,12 @@ from fastapi import FastAPI, Depends
 # from routes import token, actions, models
 
 from routes import token, actions, models
+from dotenv import load_dotenv
+from os import getenv
 
+load_dotenv()
+
+SECRET_KEY = getenv('SECRET_KEY', default = 'NO KEY - DANGER')
 
 # import routes
 # import token, actions, models

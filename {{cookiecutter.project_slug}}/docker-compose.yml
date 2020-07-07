@@ -20,6 +20,7 @@ services:
         hostname: "cookiecutter-server"
 >>>>>>> 42696a7... Prediction task queue.
         volumes:
+<<<<<<< HEAD
             - ./server/src:/app
     
     pg:
@@ -29,6 +30,17 @@ services:
             - POSTGRES_DB=postgres
         ports:
             - "5433:5432"
+=======
+            - ./server:/app
+    
+    pg:
+        image: postgis/postgis
+        container_name: pg
+        hostname: "pg"
+        environment: 
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=postgres
+>>>>>>> b93f45b... Crud work.
 
 
     redis:
