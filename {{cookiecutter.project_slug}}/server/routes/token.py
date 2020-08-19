@@ -5,12 +5,12 @@ from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from dotenv import load_dotenv
 import jwt
-from main import SECRET_KEY
+# from main import SECRET_KEY
 from datetime import datetime, timedelta
 from db.models import User, Session
 
 
-pwd_context = CryptContext(schems=['argon2'])
+pwd_context = CryptContext(schemes=['argon2'])
 
 
 def validate_user(username: str, password: str):

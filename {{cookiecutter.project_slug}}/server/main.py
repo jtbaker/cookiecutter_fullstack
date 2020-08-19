@@ -16,7 +16,7 @@ from fastapi import FastAPI, Depends
 # from . import routes 
 # import routes
 # from routes import token, actions, models
-
+# from routes import models
 from routes import token, actions, models
 from dotenv import load_dotenv
 from os import getenv
@@ -47,8 +47,8 @@ def get_cache():
     return redis
 
 # app.include_router(views.router, prefix="/")
-app.include_router(token.router)
-app.include_router(actions.router)
+# app.include_router(token.router)
+# app.include_router(actions.router)
 app.include_router(models.router)
 @app.on_event("startup")
 async def startup():
