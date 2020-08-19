@@ -24,6 +24,6 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
 
 
 
-@router.post("/authenticate")
-async def authenticate(form: OAuth2PasswordRequestForm = Depends()):
+# @router.post("/authenticate")
+# async def authenticate(form: OAuth2PasswordRequestForm = Depends()):
     
