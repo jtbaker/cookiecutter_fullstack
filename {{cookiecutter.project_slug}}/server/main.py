@@ -53,7 +53,7 @@ app.include_router(models.router)
 @app.on_event("startup")
 async def startup():
     global redis
-    redis = await aioredis.create_redis_pool("redis://cookiecutter-redis")
+    redis = await aioredis.create_redis_pool("redis://redis")
     # await database.connect()
 
 

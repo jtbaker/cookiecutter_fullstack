@@ -34,7 +34,7 @@ task_queue: arq.connections.ArqRedis
 async def startup():
     global task_queue
     task_queue = await arq.create_pool(
-        RedisSettings(host="cookiecutter-redis"),
+        RedisSettings(host="redis"),
         job_serializer = lambda x: serialize(x).to_buffer().to_pybytes(),
         job_deserializer = deserialize
     )

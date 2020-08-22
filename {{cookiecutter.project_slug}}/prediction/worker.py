@@ -35,14 +35,14 @@ async def predict(ctx, model_key: ModelKeys, X: Any) -> np.array:
 
 async def main():
     redis = await arq.create_pool(
-        RedisSettings(host="cookiecutter-redis"), 
+        RedisSettings(host="redis"), 
         job_serializer = lambda x: serialize(x).to_buffer().to_pybytes(),
         job_deserializer = deserialize
     )
 
 
 class WorkerSettings:
-    redis_settings = RedisSettings(host="cookiecutter-redis")
+    redis_settings = RedisSettings(host="redis")
     functions = [predict]
     
     job_serializer = lambda x: serialize(x).to_buffer().to_pybytes()
