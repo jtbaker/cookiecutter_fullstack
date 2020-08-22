@@ -32,11 +32,17 @@ services:
         ports:
             - "6379:6379"
     
-    prediction:
-        # image: continuumio/miniconda3
-        build: ./server/tasks
-        hostname: "cookiecutter-prediction"
-        container_name: "cookiecutter-prediction"
+    # prediction:
+    #     # image: continuumio/miniconda3
+    #     build: ./server/tasks
+    #     hostname: "cookiecutter-prediction"
+    #     container_name: "cookiecutter-prediction"
+    #     volumes:
+    #         - ./server/tasks:/home
+
+    worker:
+        build: ./prediction
+        hostname: "cookiecutter-worker"
+        container_name: "cookiecutter-worker"
         volumes:
-            - ./server/tasks:/home
-        
+            - ./prediction:/home
