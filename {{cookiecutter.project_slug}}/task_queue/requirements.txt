@@ -1,0 +1,9 @@
+sklearn
+joblib
+pandas
+numpy
+pyarrow
+arq
+xgboost
+pytest
+pytest-asyncio

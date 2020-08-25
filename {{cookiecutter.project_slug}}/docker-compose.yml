@@ -1,9 +1,8 @@
-version: "2.2"
+version: "3.8"
 
 services:
     proxy:
         image: nginx:alpine
-        container_name: "cookiecutter-proxy"
         ports:
             - "80:80"
         volumes:
@@ -11,15 +10,11 @@ services:
 
     server:
         build: ./server
-        container_name: "cookiecutter-server"
-        hostname: "cookiecutter-server"
         volumes:
             - ./server:/app
     
     pg:
         image: postgis/postgis
-        container_name: pg
-        hostname: "pg"
         environment: 
             - POSTGRES_PASSWORD=postgres
             - POSTGRES_DB=postgres
@@ -27,16 +22,18 @@ services:
 
     redis:
         image: redis
-        hostname: "cookiecutter-redis"
-        container_name: "cookiecutter-redis"
         ports:
             - "6379:6379"
     
-    prediction:
-        # image: continuumio/miniconda3
-        build: ./server/tasks
-        hostname: "cookiecutter-prediction"
-        container_name: "cookiecutter-prediction"
+    # prediction:
+    #     # image: continuumio/miniconda3
+    #     build: ./server/tasks
+    #     hostname: "cookiecutter-prediction"
+    #     container_name: "cookiecutter-prediction"
+    #     volumes:
+    #         - ./server/tasks:/home
+
+    worker:
+        build: ./task_queue
         volumes:
-            - ./server/tasks:/home
-        
+            - ./task_queue:/home

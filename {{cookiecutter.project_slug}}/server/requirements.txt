@@ -14,3 +14,6 @@ joblib
 pandas
 pytest
 psycopg2
+arq
+pyarrow
+gunicorn
