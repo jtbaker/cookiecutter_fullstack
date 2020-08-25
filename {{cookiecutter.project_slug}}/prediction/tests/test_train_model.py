@@ -1,5 +1,6 @@
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import train_test_split
+from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 from joblib import dump
 import pandas as pd
@@ -31,7 +32,7 @@ class Model:
             df[[col for col in df.columns if col != "y"]], df.y
         )
 
-        self.model = Ridge()
+        self.model = XGBRegressor()
 
         self.model.fit(self.X_train, self.y_train)
 

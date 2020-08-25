@@ -25,20 +25,21 @@ class AllowedModels(str, Enum):
     reg = "testmodel"
 
 
-models = {"testmodel": joblib.load("./tests/model.joblib")}
+models = {"testmodel": joblib.load("./model.joblib")}
 
 
 async def predict(ctx, model_key: ModelKeys, X: Any) -> np.array:
     model: ModelRegressor = models[model_key]
-    return model.predict(X).round(3).tolist()
+    
+    return X.assign(prediction=model.predict(X).round(3))
 
 
-async def main():
-    redis = await arq.create_pool(
-        RedisSettings(host="redis"), 
-        job_serializer = lambda x: serialize(x).to_buffer().to_pybytes(),
-        job_deserializer = deserialize
-    )
+# async def main():
+#     redis = await arq.create_pool(
+#         RedisSettings(host="redis"), 
+#         job_serializer = lambda x: serialize(x).to_buffer().to_pybytes(),
+#         job_deserializer = deserialize
+#     )
 
 
 class WorkerSettings:
@@ -49,9 +50,9 @@ class WorkerSettings:
     job_deserializer = deserialize
 
 
-async def main():
-    redis = await arq.create_pool(RedisSettings(host="cookiecutter-redis"))
+# async def main():
+#     redis = await arq.create_pool(RedisSettings(host="cookiecutter-redis"))
 
 
-if __name__ == "__main__":
-    asyncio.get_event_loop().run_until_complete(main())
+# if __name__ == "__main__":
+#     asyncio.get_event_loop().run_until_complete(main())

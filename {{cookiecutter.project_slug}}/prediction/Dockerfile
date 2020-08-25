@@ -1,7 +1,10 @@
 FROM python:3.8-slim
 
 WORKDIR /home
+COPY requirements.txt /home/requirements.txt
 
-RUN ["pip", "install", "sklearn", "joblib", "pandas", "numpy", "pyarrow", "arq"]
+RUN ["apt-get" , "update"]
+RUN ["apt-get", "install", "libgomp1"]
+RUN ["pip", "install", "-r", "requirements.txt"]
 
 CMD ["arq", "worker.WorkerSettings"]

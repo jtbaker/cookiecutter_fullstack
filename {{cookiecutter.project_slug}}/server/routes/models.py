@@ -2,7 +2,7 @@
 import pandas as pd
 from arq import connections
 from arq.connections import ArqRedis, create_pool, RedisSettings
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Response
 import logging
 
 # import tasks
@@ -12,11 +12,13 @@ import arq
 import random
 import asyncio
 from pydantic import BaseModel
-from typing import List, Union
+from typing import Dict, List, Union
 from datetime import datetime
+
 # from pyarrow import serialize, deserialize
 from pyarrow import serialize, deserialize
 from enum import Enum
+
 # class IrisInput(BaseModel):
 #     x: List[List[int]]
 
@@ -25,18 +27,18 @@ class AllowedModels(str, Enum):
     reg = "testmodel"
 
 
-
 router = APIRouter()
 
 task_queue: arq.connections.ArqRedis
+
 
 @router.on_event("startup")
 async def startup():
     global task_queue
     task_queue = await arq.create_pool(
         RedisSettings(host="redis"),
-        job_serializer = lambda x: serialize(x).to_buffer().to_pybytes(),
-        job_deserializer = deserialize
+        job_serializer=lambda x: serialize(x).to_buffer().to_pybytes(),
+        job_deserializer=deserialize,
     )
 
 
@@ -74,11 +76,17 @@ class FakeData(BaseModel):
 
 
 @router.post("/model/testmodel")
-async def predict_model(X: List[FakeData]) -> List[Union[int, float]]:
-    df = pd.DataFrame.from_records([v.dict() for v in X])
+async def predict_model(
+    X: List[Dict],
+    # X: List[FakeData]
+):
+    df = pd.DataFrame.from_records(X)
     job = await task_queue.enqueue_job("predict", "testmodel", df)
     result = await job.result(timeout=5000)
-    return result
+    return Response(
+        content=result.to_json(orient="records"),
+        headers={"Content-Type": "application/json"}
+    )
 
 
 # class WorkerSettings:
