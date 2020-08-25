@@ -2,8 +2,10 @@
 from passlib.context import CryptContext
 import jwt
 import os
-from ..db.models import User, get_user
+from db.models import User, get_user
+from sqlalchemy.orm import Session
 from typing import Union
+
 
 # from .models import User, get_user
 from datetime import datetime, timedelta
@@ -15,17 +17,26 @@ pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 load_dotenv()
 
 SECRET_KEY: str = os.getenv("SECRET_KEY", "none")
+
 ACCESS_TOKEN_EXPIRE_MINUTES = (
     int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "0"))
     if os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES") is not None
     else None
 )
 
+async def create_user(db: Session, username: str, password: str) -> User:
+    hashed_pwd = pwd_context.hash(password)
+    user = User(name=username, password=hashed_pwd)
+    db.add(user)
+    db.commit()
+    return user
+
 
 async def authenticate_user(
+    session: Session,
     username: str, password: str, context: CryptContext = pwd_context
 ) -> Union[User, None]:
-    user = await get_user(username)
+    user = await get_user(session, username)
     if not user:
         return None
     if not context.verify(password, user.password):

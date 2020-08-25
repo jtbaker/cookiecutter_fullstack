@@ -11,13 +11,15 @@ services:
     server:
         build: ./server
         volumes:
-            - ./server:/app
+            - ./server/src:/app
     
     pg:
         image: postgis/postgis
         environment: 
             - POSTGRES_PASSWORD=postgres
             - POSTGRES_DB=postgres
+        ports:
+            - "5433:5432"
 
 
     redis:

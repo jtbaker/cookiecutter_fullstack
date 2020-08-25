@@ -20,6 +20,11 @@ from fastapi import FastAPI, Depends
 from routes import token, actions, models
 from dotenv import load_dotenv
 from os import getenv
+from db.models import SessionLocal
+from sqlalchemy.orm import Session
+
+
+
 
 load_dotenv()
 
@@ -48,18 +53,23 @@ def get_cache():
 
 # app.include_router(views.router, prefix="/")
 # app.include_router(token.router)
-# app.include_router(actions.router)
+app.include_router(actions.router)
 app.include_router(models.router)
-@app.on_event("startup")
-async def startup():
-    global redis
-    redis = await aioredis.create_redis_pool("redis://redis")
+
+
+# @app.on_event("startup")
+# async def startup():
+    # global redis
+    # redis = await aioredis.create_redis_pool("redis://redis")
     # await database.connect()
 
 
 # async def login(name: str, password: str):
 #     user = await security.authenticate_user(username=name, password=password)
 #     # user.aw
+
+
+
 
 
 @app.get("/")
@@ -71,6 +81,7 @@ async def index(name: str = None, cache = Depends(get_cache)):
         await cache.set("name", name)
     return f"""Hello, {name}
     """
+
 
 
 @app.get("/name")

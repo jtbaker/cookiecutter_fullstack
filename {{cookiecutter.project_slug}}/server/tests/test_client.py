@@ -8,17 +8,31 @@ import pandas as pd
 # from main import app
 
 # from ..main import app
-from main import app, get_cache
+from main import app, get_cache, get_db
 from db.models import User, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm.session import sessionmaker
 
 
-engine = create_engine("postgresql://postgres:postgres@pg:5432/postgres")
+# engine = create_engine("postgresql://postgres:postgres@pg:5432/postgres")
+
+
+engine = create_engine("sqlite:///", connect_args = {"check_same_thread": False})
 
 Session = sessionmaker(bind=engine)
 
 Base.metadata.create_all(bind=engine)
+
+TestingSessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+
+def override_get_db():
+    db = TestingSessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+app.dependency_overrides[get_db] = override_get_db
 
 # class Cache:
 #     def get(self, key: str) -> Any:

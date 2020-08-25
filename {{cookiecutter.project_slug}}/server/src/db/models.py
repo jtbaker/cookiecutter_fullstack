@@ -2,7 +2,7 @@ import databases
 import sqlalchemy
 from os import getenv
 from sqlalchemy import create_engine, Column
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import sessionmaker, scoped_session, Session
 from sqlalchemy.ext.declarative import declarative_base
 from dotenv import load_dotenv
 from datetime import datetime
@@ -11,18 +11,26 @@ from datetime import datetime
 
 load_dotenv()
 
-user = getenv('dbuser')
-password = getenv('dbpass')
-host = getenv('host')
-dbname = getenv('dbname')
+user = getenv('DB_USER')
+password = getenv('DB_PASS')
+host = getenv('DB_HOST')
+dbname = getenv('DB_NAME')
 
 conn_str = f"""postgresql://{user}:{password}@{host}:5432/{dbname}"""
 
-engine = create_engine("postgresql://postgres:postgres@pg:5432/postgres")
+engine = create_engine(conn_str)
 
-Session = scoped_session(sessionmaker(bind=engine))
+SessionLocal = sessionmaker(bind=engine)
 
-Base = declarative_base()
+Base = declarative_base(bind=engine)
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 class User(Base): # type: ignore
@@ -42,9 +50,10 @@ class User(Base): # type: ignore
     # def verify_password():
 
 
-async def get_user(username: str) -> User:
-    session = Session()
+async def get_user(session: Session, username: str) -> User:
     res = session.query(User).filter(User.username == username).first()
     session.close()
     return res
 
+
+# Base.metadata.create_all(bind=engine)
