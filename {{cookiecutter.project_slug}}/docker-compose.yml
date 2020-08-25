@@ -21,7 +21,11 @@ services:
 >>>>>>> 42696a7... Prediction task queue.
         volumes:
 <<<<<<< HEAD
+<<<<<<< HEAD
             - ./server/src:/app
+=======
+            - ./server:/app
+>>>>>>> 8117631... Tweak paths
     
     pg:
         image: postgis/postgis
