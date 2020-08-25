@@ -7,4 +7,4 @@ RUN ["apt-get" , "update"]
 RUN ["apt-get", "install", "libgomp1"]
 RUN ["pip", "install", "-r", "requirements.txt"]
 
-CMD ["arq", "worker.WorkerSettings"]
+CMD ["arq", "worker.worker.WorkerSettings"]
