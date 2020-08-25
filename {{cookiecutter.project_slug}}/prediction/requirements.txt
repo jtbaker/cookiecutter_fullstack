@@ -5,3 +5,5 @@ numpy
 pyarrow
 arq
 xgboost
+pytest
+pytest-asyncio
