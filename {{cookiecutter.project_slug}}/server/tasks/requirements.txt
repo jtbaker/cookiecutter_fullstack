@@ -1,0 +1,10 @@
+aioredis
+python-dotenv
+sqlalchemy
+scikit-learn
+pandas
+keras
+xgboost
+pyarrow
+celery[redis]
+joblib

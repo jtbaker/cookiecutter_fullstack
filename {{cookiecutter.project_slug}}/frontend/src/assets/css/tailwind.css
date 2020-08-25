@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply rounded-md text-xs font-bold border border-gray-700 px-1 py-1 m-2 bg-green-500 text-white border-b-2;
+}
+
+.btn:hover {
+  /* border: 2px solid black; */
+  @apply bg-green-300 text-white text-xs;
+}
