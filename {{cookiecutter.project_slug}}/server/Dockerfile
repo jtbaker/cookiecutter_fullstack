@@ -1,9 +1,9 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi
 
-WORKDIR /app/src
+WORKDIR /app/server/src
 
 
-COPY ./requirements.txt /app/src/requirements.txt
+COPY ./requirements.txt /app/server/src/requirements.txt
 
 RUN ["pip3", "install", "--upgrade", "pip"]
 RUN ["pip3", "install", "-r", "requirements.txt"]

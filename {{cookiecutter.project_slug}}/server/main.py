@@ -17,7 +17,7 @@ from fastapi import FastAPI, Depends
 # import routes
 # from routes import token, actions, models
 # from routes import models
-from routes import token, actions, models
+from server.src.routes import token, actions, models
 from dotenv import load_dotenv
 from os import getenv
 

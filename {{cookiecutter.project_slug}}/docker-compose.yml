@@ -11,7 +11,7 @@ services:
     server:
         build: ./server
         volumes:
-            - ./server/src:/app
+            - ./server:/app/server
     
     pg:
         image: postgis/postgis
@@ -20,14 +20,6 @@ services:
             - POSTGRES_DB=postgres
         ports:
             - "5433:5432"
-
-    pg:
-        image: postgis/postgis
-        container_name: pg
-        hostname: "pg"
-        environment: 
-            - POSTGRES_PASSWORD=postgres
-            - POSTGRES_DB=postgres
 
 
     redis:
@@ -46,6 +38,4 @@ services:
         build: ./task_queue
         volumes:
             - ./task_queue:/home
-        ports:
-            - "6379:6379"
     
