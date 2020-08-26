@@ -9,11 +9,16 @@ import pandas as pd
 
 # from ..main import app
 <<<<<<< HEAD
+<<<<<<< HEAD
 from main import app, get_cache, get_db
 from db.models import User, Base
+=======
+from server.src.main import app
+from server.src.db.models import get_db, Base
+# from src.db.models import User, Base
+>>>>>>> 1a22cff... Sort out import structure
 from sqlalchemy import create_engine
 from sqlalchemy.orm.session import sessionmaker
-
 
 # engine = create_engine("postgresql://postgres:postgres@pg:5432/postgres")
 
@@ -71,24 +76,23 @@ Base.metadata.create_all(bind=engine)
 
 # def test_name():
 
-
+test_client = TestClient(app)
 
 def test_user():
-    with TestClient(app) as test_client:
-        params = {'name': "Jason"}
-        response = test_client.get("/name", params=params).json()
-        print(response)
-        assert response == params, "Params not equal"
-        # response = test_client.get("/").json()
-        print(response)
+    params = {'name': "Jason"}
+    response = test_client.get("/name", params=params).json()
+    print(response)
+    assert response == params, "Params not equal"
+    # response = test_client.get("/").json()
+    print(response)
     # assert response.get("name") == "Jason"
 
 
-def test_iris():
-    with TestClient(app) as test_client:
-        df = pd.read_csv('./tests/data/iris.csv')
-        arr = df.values.tolist()
-        response = test_client.post("/model/iris", json=arr).json()
-        print("Response is", response)
-        # print(response)
-        assert len(response) == len(arr)
+# def test_iris():
+#     with TestClient(app) as test_client:
+#         df = pd.read_csv('./tests/data/iris.csv')
+#         arr = df.values.tolist()
+#         response = test_client.post("/model/iris", json=arr).json()
+#         print("Response is", response)
+#         # print(response)
+#         assert len(response) == len(arr)

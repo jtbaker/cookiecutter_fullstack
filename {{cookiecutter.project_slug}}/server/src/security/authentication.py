@@ -2,7 +2,7 @@
 from passlib.context import CryptContext
 import jwt
 import os
-from db.models import User, get_user
+from src.db.models import User, get_user
 from sqlalchemy.orm import Session
 from typing import Union
 
