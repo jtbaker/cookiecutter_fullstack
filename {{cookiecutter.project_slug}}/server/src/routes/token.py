@@ -1,4 +1,4 @@
-from routes.crud import pwd_context
+from src.routes.crud import pwd_context
 from fastapi import APIRouter, Depends
 from argon2 import PasswordHasher
 from passlib.context import CryptContext
@@ -8,7 +8,7 @@ from os import environ
 import jwt
 # from main import SECRET_KEY
 from datetime import datetime, timedelta
-from db.models import User, get_db
+from src.db.models import User, get_db
 from sqlalchemy.orm import Session
 
 # Session
