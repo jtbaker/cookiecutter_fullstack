@@ -6,7 +6,7 @@ import jwt
 from dotenv import load_dotenv
 from os import getenv, environ
 # from db.models import User
-from src.db.models import User
+from server.src.db.models import User
 
 
 load_dotenv()

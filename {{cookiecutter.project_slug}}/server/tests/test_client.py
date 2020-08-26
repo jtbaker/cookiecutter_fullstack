@@ -8,15 +8,11 @@ import pandas as pd
 # from main import app
 
 # from ..main import app
-<<<<<<< HEAD
-<<<<<<< HEAD
-from main import app, get_cache, get_db
-from db.models import User, Base
-=======
+
 from server.src.main import app
 from server.src.db.models import get_db, Base
 # from src.db.models import User, Base
->>>>>>> 1a22cff... Sort out import structure
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm.session import sessionmaker
 
@@ -24,8 +20,6 @@ from sqlalchemy.orm.session import sessionmaker
 
 
 engine = create_engine("sqlite:///", connect_args = {"check_same_thread": False})
-
-Session = sessionmaker(bind=engine)
 
 Base.metadata.create_all(bind=engine)
 
@@ -40,23 +34,7 @@ def override_get_db():
 
 app.dependency_overrides[get_db] = override_get_db
 
-=======
-from main import app, get_cache
-from db.models import User, Base
-from sqlalchemy import create_engine
-from sqlalchemy.orm.session import sessionmaker
 
-
-<<<<<<< HEAD
->>>>>>> 1513f58... Add testing.
-=======
-engine = create_engine("postgresql://postgres:postgres@pg:5432/postgres")
-
-Session = sessionmaker(bind=engine)
-
-Base.metadata.create_all(bind=engine)
-
->>>>>>> b93f45b... Crud work.
 # class Cache:
 #     def get(self, key: str) -> Any:
 #         return getattr(self, key)
@@ -84,7 +62,6 @@ def test_user():
     print(response)
     assert response == params, "Params not equal"
     # response = test_client.get("/").json()
-    print(response)
     # assert response.get("name") == "Jason"
 
 
