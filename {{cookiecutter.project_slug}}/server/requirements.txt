@@ -5,40 +5,23 @@ httpx
 databases[postgresql]
 python-dotenv
 passlib
-<<<<<<< HEAD
-<<<<<<< HEAD
 sqlalchemy
 argon2-cffi
 jwt
 python-multipart
 celery[redis]
-<<<<<<< HEAD
-<<<<<<< HEAD
 joblib
 pandas
 pytest
-<<<<<<< HEAD
 psycopg2
 arq
 pyarrow
 gunicorn
-=======
-sqlalchemy
->>>>>>> f54c247... Start work on generalized database abstractions.
-=======
 sqlalchemy
 argon2-cffi
 jwt
 python-multipart
->>>>>>> 7c18cfe... Work on fleshing out project structure.
-=======
-joblib
->>>>>>> 6c835bc... Add celery worker functionality.
-=======
 joblib
 pandas
 pytest
->>>>>>> 1513f58... Add testing.
-=======
 psycopg2
->>>>>>> b93f45b... Crud work.

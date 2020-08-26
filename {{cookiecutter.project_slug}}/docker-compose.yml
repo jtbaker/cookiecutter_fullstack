@@ -3,10 +3,6 @@ version: "3.8"
 services:
     proxy:
         image: nginx:alpine
-<<<<<<< HEAD
-=======
-        container_name: "cookiecutter-proxy"
->>>>>>> 42696a7... Prediction task queue.
         ports:
             - "80:80"
         volumes:
@@ -14,18 +10,8 @@ services:
 
     server:
         build: ./server
-<<<<<<< HEAD
-=======
-        container_name: "cookiecutter-server"
-        hostname: "cookiecutter-server"
->>>>>>> 42696a7... Prediction task queue.
         volumes:
-<<<<<<< HEAD
-<<<<<<< HEAD
             - ./server/src:/app
-=======
-            - ./server:/app
->>>>>>> 8117631... Tweak paths
     
     pg:
         image: postgis/postgis
@@ -34,9 +20,7 @@ services:
             - POSTGRES_DB=postgres
         ports:
             - "5433:5432"
-=======
-            - ./server:/app
-    
+
     pg:
         image: postgis/postgis
         container_name: pg
@@ -44,15 +28,12 @@ services:
         environment: 
             - POSTGRES_PASSWORD=postgres
             - POSTGRES_DB=postgres
->>>>>>> b93f45b... Crud work.
 
 
     redis:
         image: redis
-<<<<<<< HEAD
         ports:
             - "6379:6379"
-    
     # prediction:
     #     # image: continuumio/miniconda3
     #     build: ./server/tasks
@@ -65,23 +46,6 @@ services:
         build: ./task_queue
         volumes:
             - ./task_queue:/home
-=======
-        hostname: "cookiecutter-redis"
-        container_name: "cookiecutter-redis"
         ports:
             - "6379:6379"
     
-    prediction:
-        # image: continuumio/miniconda3
-        build: ./server/tasks
-        hostname: "cookiecutter-prediction"
-        container_name: "cookiecutter-prediction"
-        volumes:
-<<<<<<< HEAD
-            - ./prediction_engine:/home
-        
->>>>>>> 42696a7... Prediction task queue.
-=======
-            - ./server/tasks:/home
-        
->>>>>>> 6c835bc... Add celery worker functionality.
