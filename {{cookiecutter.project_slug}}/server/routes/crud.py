@@ -3,16 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from passlib.context import CryptContext
 from datetime import timedelta, datetime
 import jwt
-from dotenv import load_dotenv
-from os import getenv, environ
-# from db.models import User
 from db.models import User
-
-
-load_dotenv()
-
-
-SECRET_KEY: str = environ["SECRET_KEY"]
 
 pwd_context = CryptContext(schemes=['argon2'])
 

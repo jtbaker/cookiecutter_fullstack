@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, Response
 from fastapi import status
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2AuthorizationCodeBearer
 from passlib.registry import _name_re
-from src.security.authentication import create_access_token, authenticate_user, create_user
-from src.db.models import get_db
+from security.authentication import create_access_token, authenticate_user, create_user
+from db.models import get_db
 from sqlalchemy.orm import Session
 
 # from .types import SignUpForm
